@@ -9,5 +9,7 @@ namespace Clinic.Core.Entities
     public class Patient:Person
     {
         public DateTime BirthDate { get; set; }
+
+        public ICollection<Appointment> Appointments { get; set; }= new HashSet<Appointment>();
     }
 }

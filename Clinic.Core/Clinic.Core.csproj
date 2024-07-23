@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\Services.Contract\" />
-    <Folder Include="Interfaces\UnitOfWork.Conterct\" />
-    <Folder Include="Interfaces\Repository.Contract\" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinic.Core", "Clinic.Core\Clinic.Core.csproj", "{B611A283-8B12-4FC9-8786-3E4FC1DE694E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clinic.Core", "Clinic.Core\Clinic.Core.csproj", "{B611A283-8B12-4FC9-8786-3E4FC1DE694E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinc.Repository", "Clinc.Repository\Clinc.Repository.csproj", "{E742D6E1-0492-4E9E-AFCB-ACF8DD030627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B611A283-8B12-4FC9-8786-3E4FC1DE694E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B611A283-8B12-4FC9-8786-3E4FC1DE694E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B611A283-8B12-4FC9-8786-3E4FC1DE694E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E742D6E1-0492-4E9E-AFCB-ACF8DD030627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E742D6E1-0492-4E9E-AFCB-ACF8DD030627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E742D6E1-0492-4E9E-AFCB-ACF8DD030627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E742D6E1-0492-4E9E-AFCB-ACF8DD030627}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
