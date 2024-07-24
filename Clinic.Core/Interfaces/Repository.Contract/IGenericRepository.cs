@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace Clinic.Core.Interfaces.Repository.Contract
         
        Task <IReadOnlyList<T>> GetAll();
 
-       Task <IReadOnlyList<T>> GetAllWithFilter();
+       Task <IReadOnlyList<T>> GetAllWithFilter(Expression<Func<T, bool>> Criteria);
 
         IQueryable<T> GetTheRawQuery();
 

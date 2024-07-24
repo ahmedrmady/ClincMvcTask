@@ -13,6 +13,7 @@ namespace Clinc.Repository.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Schedule> builder)
         {
+            builder.HasKey(S=>new {S.DoctorId,S.DayID});
             builder.HasOne(S => S.Day)
                    .WithMany(D => D.Schedules)
                    .HasForeignKey(S=>S.DayID);

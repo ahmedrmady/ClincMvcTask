@@ -9,7 +9,7 @@ namespace Clinic.Core.Interfaces.UnitOfWork.Conterct
 {
     public interface IUnitOfWork:IAsyncDisposable
     {
-        Task<IGenericRepository<TEntity>> Repository<TEntity>() where TEntity : class;
+        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class;
         Task<bool> SaveChangesAsync();
 
     }
