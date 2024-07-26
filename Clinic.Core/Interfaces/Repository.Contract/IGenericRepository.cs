@@ -11,6 +11,7 @@ namespace Clinic.Core.Interfaces.Repository.Contract
     {
         void Add(T entity);
         
+       Task <T> GetWithFilter(Expression<Func<T, bool>> Criteria);
        Task <IReadOnlyList<T>> GetAll();
 
        Task <IReadOnlyList<T>> GetAllWithFilter(Expression<Func<T, bool>> Criteria);

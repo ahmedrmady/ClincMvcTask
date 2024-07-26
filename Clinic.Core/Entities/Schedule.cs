@@ -14,8 +14,8 @@ namespace Clinic.Core.Entities
         public int DayID { get; set; }
         public WeekDay  Day { get; set; } //NP[1]
 
-        public int From { get; set; }
-        public int To { get; set; }
+        public double From { get; set; }
+        public double To { get; set; }
 
     }
 }

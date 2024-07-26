@@ -22,6 +22,9 @@ namespace Clinc.Repository.Repository
         public void Add(TEntity entity)
         =>_context.Add(entity);
 
+        public async Task<TEntity> GetWithFilter(Expression<Func<TEntity, bool>> Criteria)
+        =>await _context.Set<TEntity>().Where(Criteria).FirstOrDefaultAsync();
+
         public async Task<IReadOnlyList<TEntity>> GetAll()
         =>await _context.Set<TEntity>().ToListAsync() ;
 

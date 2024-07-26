@@ -1,6 +1,7 @@
 ﻿using Clinc.Repository.Data;
 using Clinc.Repository.Repository;
 using Clinic.Core.Interfaces.Repository.Contract;
+using Clinic.Core.Interfaces.UnitOfWork.Conterct;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ namespace Clinc.Repository.DI
                 );
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             
             return services;
         }
