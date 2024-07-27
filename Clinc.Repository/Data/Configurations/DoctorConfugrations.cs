@@ -15,8 +15,7 @@ namespace Clinc.Repository.Data.Configurations
         {
             builder.HasKey(d=>d.Id);
 
-            builder.Property(d => d.Id)
-                   .UseIdentityColumn(10,5);
+
 
             builder.HasMany(d => d.Schedules)
                    .WithOne(s => s.Doctor)

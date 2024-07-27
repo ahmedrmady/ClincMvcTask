@@ -1,0 +1,27 @@
+[
+  {
+    "DoctorId": 1,
+    "DayID": 1,
+    "From": 4.00,
+    "To": 7.00
+
+  },
+  {
+    "DoctorId": 2,
+    "DayID": 2,
+    "From": 1.00,
+    "To": 6.00
+  },
+  {
+    "DoctorId": 3,
+    "DayID": 3,
+    "From": 4.00,
+    "To": 6.00
+  },
+  {
+    "DoctorId": 4,
+    "DayID": 4,
+    "From": 3.00,
+    "To": 7.00
+  }
+]

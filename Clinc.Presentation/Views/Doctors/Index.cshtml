@@ -1,0 +1,54 @@
+﻿@model AppointmentViewModel
+@{
+    ViewData["Title"] = "Doctor";
+}
+
+<h1>Doctor Appointments:</h1>
+
+<div class="form-group mb-4">
+    <label >Choose Doctor</label>
+    <select class="form-control" id="doctorsSelect" >
+    </select>
+</div>
+<div class="row" style="padding: 20px;">
+    <div class="col-md-6">
+        <label>From:</label>
+        <div class="input-group" style="width:100%">
+            <input type="date" id="startDate" class="form-control" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label>To:</label>
+        <div class="input-group" style="width:100%">
+            <input type="date" id="endDate" class="form-control" />
+        </div>
+    </div>
+    <div class="col-md-12 text-center mt-4">
+        <button id="searchButton" class="btn btn-primary">Search</button>
+    </div>
+</div>
+
+<div class="container mt-5" id="dateRange">
+    <h2 class="mb-4">Appointments</h2>
+    <div id="appointments-container">
+        <table id="appointments-table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Patient Name</th>
+                    <th>Patient Birth Date</th>
+                    <th>Appointment Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+@section Scripts {
+    <script src="~/js/viewjs/doctors.js"></script>
+}

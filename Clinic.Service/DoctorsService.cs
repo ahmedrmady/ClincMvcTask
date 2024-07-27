@@ -18,7 +18,7 @@ namespace Clinic.Service
         => this._unitOfWork = unitOfWork;
 
 
-        public async Task<IReadOnlyList<Doctor>> GetAllDoctors()
+        public async Task<IEnumerable<Doctor>> GetAllDoctors()
         => await _unitOfWork.Repository<Doctor>().GetAll();
 
         public async Task<IEnumerable<KeyValuePair<double, double>>> GetTheDoctorFreeSlots(int docId, DateTime date)
@@ -28,7 +28,9 @@ namespace Clinic.Service
 
             //get the schedule of this day
             var scheduleOfthisDay = await _unitOfWork.Repository<Schedule>()
-                                                                        .GetWithFilter(S => S.DayID == weekDay.Id);
+                                                                        .GetWithFilter(S => S.DayID == weekDay.Id && S.DoctorId== docId);
+            //if no schedule for this day 
+            if(scheduleOfthisDay is null) return Enumerable.Empty<KeyValuePair<double, double>>();
 
             var timeSlots = GetTimeSlots(scheduleOfthisDay);
 
@@ -40,7 +42,7 @@ namespace Clinic.Service
                                                                               .ToListAsync();
 
             //return the Free slots for this doctor 
-           return timeSlots.Except(listOfDoctorAppointmentsInThisDate);
+            return timeSlots.Except(listOfDoctorAppointmentsInThisDate);
         }
 
 

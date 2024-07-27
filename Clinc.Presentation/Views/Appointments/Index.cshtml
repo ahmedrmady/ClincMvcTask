@@ -1,0 +1,54 @@
+﻿
+@model AppointmentViewModel
+@{
+    ViewData["Title"] = "Secretary";
+}
+
+
+
+
+<div class="container mt-5">
+    <h2 class="mb-4">Create New Appointment</h2>
+    <form id ="appForm">
+        <div class="form-group mb-4">
+            <label asp-for="PatientName" >Patient Name</label>
+            <input  class="form-control" asp-for="PatientName" placeholder="Enter patient's name" required>
+            <span asp-validation-for="PatientName" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="PatientBD">Birth Date</label>
+            <input asp-for="PatientBD" type="date" class="form-control" required>
+            <span asp-validation-for="PatientBD" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="DoctorId">Choose Doctor</label>
+            <select class="form-control" asp-for="DoctorId" required>
+               
+            </select>
+            <span asp-validation-for="DoctorId" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="Date">Appointment Date</label>
+            <input asp-for="Date" type="date" class="form-control"  >
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-2">
+            <label for="appointmentTime">Appointment Time</label>
+            <select class="form-control" id="appointmentTime" required>
+                <option value="">Select a time slot</option>
+            </select>
+            <input asp-for="From"  hidden/>
+            <input asp-for="To"  hidden/>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/viewjs/appointments.js"></script>
+    
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

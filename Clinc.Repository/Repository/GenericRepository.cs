@@ -28,8 +28,8 @@ namespace Clinc.Repository.Repository
         public async Task<IReadOnlyList<TEntity>> GetAll()
         =>await _context.Set<TEntity>().ToListAsync() ;
 
-        public async Task<IReadOnlyList<TEntity>> GetAllWithFilter(Expression<Func<TEntity,bool>> Criteria)
-        =>await _context.Set<TEntity>().Where(Criteria).ToListAsync() ;
+        public async Task<IReadOnlyList<TEntity>> GetAllWithFilter(Expression<Func<TEntity,bool>> Criteria, Expression<Func<TEntity, object>>? include =null)
+        =>await _context.Set<TEntity>().Where(Criteria).Include(include).ToListAsync() ;
 
         public IQueryable<TEntity> GetTheRawQuery()
         => _context.Set<TEntity>();

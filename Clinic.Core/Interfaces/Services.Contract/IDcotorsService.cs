@@ -9,7 +9,7 @@ namespace Clinic.Core.Interfaces.Services.Contract
 {
     public interface IDcotorsService
     {
-        Task<IReadOnlyList<Doctor>> GetAllDoctors();
+        Task<IEnumerable<Doctor>> GetAllDoctors();
 
         Task<IEnumerable<KeyValuePair<double, double>>> GetTheDoctorFreeSlots(int docId,DateTime date);
     }

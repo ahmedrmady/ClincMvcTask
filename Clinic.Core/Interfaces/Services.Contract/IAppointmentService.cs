@@ -12,11 +12,12 @@ namespace Clinic.Core.Interfaces.Services.Contract
     {
         Task<ResponseModel> CreateNewAppointment(Appointment appointment);
 
-        Task<IReadOnlyList<Appointment>> GetAllAppointments();
+        Task<IEnumerable<Appointment>> GetAllAppointments();
+        Task<IEnumerable<Appointment>> GetAllAppointmentsWithDoctorsName();
 
-        Task<IReadOnlyList<Appointment>> GetAppointmentsByDocId(int DocId);
+        Task<IEnumerable<Appointment>> GetAppointmentsByDocId(int DocId);
 
-        Task<IReadOnlyList<Appointment>> GetAppointmentsByDocIdDuringPeriod(int DocId,DateTime From,DateTime To);
+        Task<IEnumerable<Appointment>> GetAppointmentsByDocIdDuringPeriod(int DocId,DateTime From,DateTime To);
 
        
 

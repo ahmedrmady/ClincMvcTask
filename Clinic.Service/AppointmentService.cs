@@ -3,6 +3,7 @@ using Clinic.Core.Entities;
 using Clinic.Core.Interfaces.Repository.Contract;
 using Clinic.Core.Interfaces.Services.Contract;
 using Clinic.Core.Interfaces.UnitOfWork.Conterct;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,16 +32,18 @@ namespace Clinic.Service
                 Message= result? "The Appintment Created Successfully":"Somthing Wrong"
             };
         }
-        public async Task<IReadOnlyList<Appointment>> GetAllAppointments()
+        public async Task<IEnumerable<Appointment>> GetAllAppointments()
         => await _repository.GetAll();
+        public async Task<IEnumerable<Appointment>> GetAllAppointmentsWithDoctorsName()
+        => await _repository.GetTheRawQuery().Include(D=>D.Doctor).ToListAsync();
 
-        public async Task<IReadOnlyList<Appointment>> GetAppointmentsByDocId(int DocId)
+        public async Task<IEnumerable<Appointment>> GetAppointmentsByDocId(int DocId)
         => await _repository.GetAllWithFilter(A=>A.DoctorId ==DocId);
 
-        public async Task<IReadOnlyList<Appointment>> GetAppointmentsByDocIdDuringPeriod(int DocId, DateTime From, DateTime To)
+        public async Task<IEnumerable<Appointment>> GetAppointmentsByDocIdDuringPeriod(int DocId, DateTime From, DateTime To)
         =>await _repository.GetAllWithFilter(
                 A=> 
-                (A.DoctorId == DocId && (A.Date >= From && A.Date<= To))
+                (A.DoctorId == DocId && (A.Date >= From && A.Date<= To)),A=>A.Doctor
             );
 
 

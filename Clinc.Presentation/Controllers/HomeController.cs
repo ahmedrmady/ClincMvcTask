@@ -1,4 +1,8 @@
-﻿using Clinc.Presentation.Models;
+﻿using AutoMapper;
+using Clinc.Presentation.Models;
+using Clinc.Presentation.ViewModels;
+using Clinic.Core.Entities;
+using Clinic.Core.Interfaces.Services.Contract;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +11,22 @@ namespace Clinc.Presentation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IAppointmentService _appointmentService;
+        private readonly IMapper mapper;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IAppointmentService appointmentService,IMapper mapper)
         {
             _logger = logger;
+            this._appointmentService = appointmentService;
+            this.mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
-            return View();
+          var listOfAppointments =  await  _appointmentService.GetAllAppointmentsWithDoctorsName();
+
+            var listOfAppointmentsViewModel = mapper.Map<IEnumerable<Appointment>,IEnumerable< AppointmentViewModel >> (listOfAppointments);
+            return View(listOfAppointmentsViewModel);
         }
 
         public IActionResult Privacy()

@@ -14,7 +14,7 @@ namespace Clinic.Core.Interfaces.Repository.Contract
        Task <T> GetWithFilter(Expression<Func<T, bool>> Criteria);
        Task <IReadOnlyList<T>> GetAll();
 
-       Task <IReadOnlyList<T>> GetAllWithFilter(Expression<Func<T, bool>> Criteria);
+       Task <IReadOnlyList<T>> GetAllWithFilter(Expression<Func<T, bool>> Criteria, Expression<Func<T, object>>? include = null);
 
         IQueryable<T> GetTheRawQuery();
 

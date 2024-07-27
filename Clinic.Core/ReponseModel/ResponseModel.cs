@@ -11,13 +11,13 @@ namespace Clinc.ReponseModel
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
-        public int TotalCount { get; set; }
+        //public int TotalCount { get; set; }
 
         public object Data { get; set; }
         public ResponseModel()
         {
             this.IsSuccess = false;
-            Message = "حدث خطاء!";
+            Message = "Something wrong !";
         }
         public ResponseModel(string message, bool isSuccess =false,object Data = null)
         {
