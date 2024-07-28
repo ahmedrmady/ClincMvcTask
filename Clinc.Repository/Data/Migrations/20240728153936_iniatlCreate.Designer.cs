@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Clinc.Repository.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240727125055_initalCreate")]
-    partial class initalCreate
+    [Migration("20240728153936_iniatlCreate")]
+    partial class iniatlCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,14 +36,14 @@ namespace Clinc.Repository.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("From")
-                        .HasColumnType("float");
+                    b.Property<TimeSpan>("From")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("PatientBD")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("To")
-                        .HasColumnType("float");
+                    b.Property<TimeSpan>("To")
+                        .HasColumnType("time");
 
                     b.HasKey("DoctorId", "PatientName", "Date");
 

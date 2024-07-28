@@ -17,7 +17,7 @@ namespace Clinc.Presentation.Controllers
             this._service = service;
             this._mapper = mapper;
         }
-        public async Task<IActionResult> Index(int? id)
+        public IActionResult Index(int? id)
         {
 
 

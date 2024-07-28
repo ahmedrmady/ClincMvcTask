@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Clinc.Repository.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initalCreate : Migration
+    public partial class iniatlCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,8 +45,8 @@ namespace Clinc.Repository.Data.Migrations
                     PatientName = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PatientBD = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    From = table.Column<double>(type: "float", nullable: false),
-                    To = table.Column<double>(type: "float", nullable: false)
+                    From = table.Column<TimeSpan>(type: "time", nullable: false),
+                    To = table.Column<TimeSpan>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {

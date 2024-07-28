@@ -17,7 +17,7 @@ namespace Clinc.Presentation.Controllers
             this._appointmentService = appointmentService;
             this._mapper = mapper;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -34,9 +34,18 @@ namespace Clinc.Presentation.Controllers
                 });
             }
 
-            var appointment = _mapper.Map<AppointmentViewModel, Appointment>(model);
-         var result =  await  _appointmentService.CreateNewAppointment(appointment);
-            return Ok(result);
+            try
+            {
+                var appointment = _mapper.Map<AppointmentViewModel, Appointment>(model);
+                var result = await _appointmentService.CreateNewAppointment(appointment);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+          
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Clinic.Service
         public async Task<IEnumerable<Doctor>> GetAllDoctors()
         => await _unitOfWork.Repository<Doctor>().GetAll();
 
-        public async Task<IEnumerable<KeyValuePair<double, double>>> GetTheDoctorFreeSlots(int docId, DateTime date)
+        public async Task<IEnumerable<Tuple<TimeSpan, TimeSpan>>> GetTheDoctorFreeSlots(int docId, DateTime date)
         {
             //get the week day 
             var weekDay = await GetTheWeekDayFromTheDate(date);
@@ -30,7 +30,7 @@ namespace Clinic.Service
             var scheduleOfthisDay = await _unitOfWork.Repository<Schedule>()
                                                                         .GetWithFilter(S => S.DayID == weekDay.Id && S.DoctorId== docId);
             //if no schedule for this day 
-            if(scheduleOfthisDay is null) return Enumerable.Empty<KeyValuePair<double, double>>();
+            if(scheduleOfthisDay is null) return Enumerable.Empty<Tuple<TimeSpan, TimeSpan>>();
 
             var timeSlots = GetTimeSlots(scheduleOfthisDay);
 
@@ -38,7 +38,7 @@ namespace Clinic.Service
             var listOfDoctorAppointmentsInThisDate = await _unitOfWork.Repository<Appointment>()
                                                                               .GetTheRawQuery()
                                                                               .Where(A => A.DoctorId == docId && A.Date == date)
-                                                                              .Select(App => new KeyValuePair<double, double>(App.From, App.To))
+                                                                              .Select(App => new Tuple<TimeSpan, TimeSpan>(App.From, App.To))
                                                                               .ToListAsync();
 
             //return the Free slots for this doctor 
@@ -52,21 +52,24 @@ namespace Clinic.Service
             return await _unitOfWork.Repository<WeekDay>().GetWithFilter(WK => WK.DayName == dayName);
         }
 
-        private List<KeyValuePair<double, double>> GetTimeSlots(Schedule schedule)
+        private List<Tuple<TimeSpan, TimeSpan>> GetTimeSlots(Schedule schedule)
         {
             //get the work hours of this schedule
             double totalHours = schedule.To - schedule.From;
             // get the total sessions the doctor can do for this work hours
             // (30 min for every session,2 in the hour)
             double totalSlots = 2.0 * totalHours;
-            List<KeyValuePair<double, double>> listOfAllSlotOfThisDate = new List<KeyValuePair<double, double>>();
+            List<Tuple<TimeSpan, TimeSpan>> listOfAllSlotOfThisDate = new List<Tuple<TimeSpan, TimeSpan>>();
 
             double startHour = schedule.From;
             for (int i = 0; i < totalSlots; i++)
             {
                 double startTime = startHour + (i * 0.5);
                 double endTime = startTime + 0.5;
-                listOfAllSlotOfThisDate.Add(new KeyValuePair<double, double>(startTime, endTime));
+                TimeSpan start = TimeSpan.FromHours(startTime);
+                TimeSpan end = TimeSpan.FromHours(endTime);
+
+                listOfAllSlotOfThisDate.Add(new Tuple<TimeSpan, TimeSpan>(start, end));
             }
 
             return listOfAllSlotOfThisDate;

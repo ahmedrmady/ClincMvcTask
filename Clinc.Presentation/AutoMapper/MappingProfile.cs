@@ -11,10 +11,10 @@ namespace Clinc.Presentation.AutoMapper
             CreateMap<Doctor, DoctorViewModel>();
             CreateMap<AppointmentViewModel, Appointment>().ReverseMap()
                 .ForMember(D=>D.DoctorName,O=>O.MapFrom(S=>S.Doctor.Name));
-            CreateMap<KeyValuePair<double, double>, TimeSlotViewModel>()
-                .ForMember(D => D.TimeSlot, O => O.MapFrom(S => $"{S.Key} - {S.Value}"))
-                .ForMember(D => D.From, O => O.MapFrom(S => S.Key))
-                .ForMember(D => D.To, O => O.MapFrom(S => S.Value));
+            CreateMap<Tuple<TimeSpan, TimeSpan>, TimeSlotViewModel>()
+                .ForMember(D => D.TimeSlot, O => O.MapFrom(S => $"{S.Item1} - {S.Item2}"))
+                .ForMember(D => D.From, O => O.MapFrom(S => S.Item1))
+                .ForMember(D => D.To, O => O.MapFrom(S => S.Item2));
                 
 
             

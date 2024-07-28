@@ -11,6 +11,6 @@ namespace Clinic.Core.Interfaces.Services.Contract
     {
         Task<IEnumerable<Doctor>> GetAllDoctors();
 
-        Task<IEnumerable<KeyValuePair<double, double>>> GetTheDoctorFreeSlots(int docId,DateTime date);
+        Task<IEnumerable<Tuple<TimeSpan, TimeSpan>>> GetTheDoctorFreeSlots(int docId,DateTime date);
     }
 }

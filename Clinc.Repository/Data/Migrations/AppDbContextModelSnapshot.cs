@@ -33,14 +33,14 @@ namespace Clinc.Repository.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("From")
-                        .HasColumnType("float");
+                    b.Property<TimeSpan>("From")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("PatientBD")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("To")
-                        .HasColumnType("float");
+                    b.Property<TimeSpan>("To")
+                        .HasColumnType("time");
 
                     b.HasKey("DoctorId", "PatientName", "Date");
 

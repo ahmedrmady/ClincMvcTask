@@ -35,9 +35,18 @@ namespace Clinc.Presentation.Controllers
         public async Task<ActionResult<IEnumerable<TimeSlotViewModel>>> GetTimeSlotsByDocId(int docId ,DateTime date)
         {
             var freeSlots = await _dcotorsService.GetTheDoctorFreeSlots(docId,date);
+            try
+            {
+                var freeTimeSlotsList = _mapper.Map<IEnumerable<Tuple<TimeSpan, TimeSpan>>, IEnumerable<TimeSlotViewModel>>(freeSlots);
+                return Ok(freeTimeSlotsList);
+            }
+            catch (Exception ex)
+            {
 
-            var freeTimeSlotsList = _mapper.Map<IEnumerable<KeyValuePair<double,double>>, IEnumerable<TimeSlotViewModel>>(freeSlots);
-            return Ok(freeTimeSlotsList);
+                throw;
+            }
+           
+            
 
         }
 
